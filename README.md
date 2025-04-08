@@ -1,4 +1,4 @@
-# bhop-get-stats
+# bhop-get-stats (with prestrafetrainer)
 
 ## I do not actively work on this, and I understand that some things have broken due to the 64-bit update. There are active forks though, so check them for newer stuff. I'm happy to accept PRs if the code looks strong enough that it won't require me to test it.
 
