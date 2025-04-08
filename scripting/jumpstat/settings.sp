@@ -27,7 +27,7 @@
 #define SHOWKEYS_ENABLED 1 << 26
 #define SHOWKEYS_SIMPLE 1 << 27
 #define SHOWKEYS_UNRELIABLE 1 << 28
-//open slot 1 << 29
+#define PRESTRAFETRAINER_ENABLED 1 << 29
 //open slot 1 << 30
 //open slot 1 << 31
 //open slot 1 << 32 -> must solve issues (or make sure there are none) with handling sign bit if this is used
@@ -53,7 +53,8 @@ enum
 	Offset,
 	Speedometer,
 	FJT,
-	ShowKeys
+	ShowKeys,
+	PreStrafeTrainer
 };
 
 char g_sHudStrs[][] = {
@@ -62,7 +63,8 @@ char g_sHudStrs[][] = {
 	"Offset",
 	"Speedometer",
 	"FJT",
-	"ShowKeys"
+	"ShowKeys",
+	"PreStrafeTrainer"
 };
 
 float g_fDefaultHudYPositions[] = {
@@ -71,7 +73,8 @@ float g_fDefaultHudYPositions[] = {
 	0.35,
 	0.01,
 	0.4,
-	-1.0
+	-1.0,
+	-0.5
 };
 
 enum
@@ -323,7 +326,7 @@ void SetDefaultSetting(int client, int setting)
 void PushDefaultBools(int client)
 {
 	g_iSettings[client][Bools] = 0;
-	g_iSettings[client][Bools] |= JHUD_ENABLED;
+	//g_iSettings[client][Bools] |= JHUD_ENABLED;
 	//g_iSettings[client][Bools] |= JHUD_JSS;
 	g_iSettings[client][Bools] |= JHUD_SYNC;
 
@@ -332,7 +335,7 @@ void PushDefaultBools(int client)
 	//g_iSettings[client][Bools] |= OFFSETS_ENABLED;
 	//g_iSettings[client][Bools] |= SPEEDOMETER_ENABLED;
 	//g_iSettings[client][Bools] |= SPEEDOMETER_VELOCITY_DIFF:
-	g_iSettings[client][Bools] |= SSJ_ENABLED;
+	//g_iSettings[client][Bools] |= SSJ_ENABLED;
 	g_iSettings[client][Bools] |= SSJ_REPEAT;
 	//g_iSettings[client][Bools] |= SSJ_HEIGHTDIFF;
 	g_iSettings[client][Bools] |= SSJ_GAIN;
@@ -360,7 +363,7 @@ void PushDefaultBools(int client)
 	}
 	else
 	{
-		g_iSettings[client][Bools] |= SHOWKEYS_UNRELIABLE;
+		//g_iSettings[client][Bools] |= SHOWKEYS_UNRELIABLE;
 	}
 
 	BgsSetCookie(client, g_hSettings[Bools], g_iSettings[client][Bools]);
@@ -392,7 +395,8 @@ void PushDefaultPositions1(int client)
 	SetHudPositionInt(client, Trainer, Y_DIM, GetHudCoordinateToInt(g_fDefaultHudYPositions[Trainer], POS_BINARY_MASK, POS_MIN_INT, POS_MAX_INT));
 	SetHudPositionInt(client, Offset, Y_DIM, GetHudCoordinateToInt(g_fDefaultHudYPositions[Offset], POS_BINARY_MASK, POS_MIN_INT, POS_MAX_INT));
 	SetHudPositionInt(client, Speedometer, Y_DIM, GetHudCoordinateToInt(g_fDefaultHudYPositions[Speedometer], POS_BINARY_MASK, POS_MIN_INT, POS_MAX_INT));
-
+	SetHudPositionInt(client, PreStrafeTrainer, Y_DIM, GetHudCoordinateToInt(g_fDefaultHudYPositions[PreStrafeTrainer], POS_BINARY_MASK, POS_MIN_INT, POS_MAX_INT));
+	
 	g_iSettings[client][Positions_X] = 0;
 	BgsSetCookie(client, g_hSettings[Positions_X], g_iSettings[client][Positions_X]);
 	BgsSetCookie(client, g_hSettings[Positions_Y], g_iSettings[client][Positions_Y]);
