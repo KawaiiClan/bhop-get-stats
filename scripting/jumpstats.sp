@@ -14,6 +14,7 @@
 #include "jumpstat/speedometer.sp"
 #include "jumpstat/ssj.sp"
 #include "jumpstat/trainer.sp"
+#include "jumpstat/pretrainer.sp"
 #include "jumpstat/fjt.sp"
 #include "jumpstat/showkeys.sp"
 #include "jumpstat/menu.sp"
@@ -24,15 +25,15 @@
 #include <shavit/replay-playback>
 #include <shavit/zones>
 
-#define JS_VERSTION "3.9"
+#define JS_VERSTION "4.0"
 
 #pragma semicolon 1
 #pragma newdecls required
 
 public Plugin myinfo =
 {
-	name = "bgs-jumpstats",
-	author = "Nimmy",
+	name = "jumpstats",
+	author = "Nimmy, olivia",
 	description = "all kinds of stuff",
 	version = JS_VERSTION,
 	url = "https://github.com/Nimmy2222/bhop-get-stats"
@@ -40,6 +41,7 @@ public Plugin myinfo =
 
 // Dev Notes - Channel Groups (0-5 Max)
 // 0 Trainer
+// 0 PreTrainer
 // 1 Jhud
 // 2 Offset
 // 3 Showkeys
@@ -100,6 +102,7 @@ public void OnLibraryRemoved(const char[] name)
 public void BhopStat_TickForward(int client, int buttons, float vel[3], float angles[3], bool inbhop, float speed, float gain, float jss, float yawDiff)
 {
 	Trainer_Tick(client, speed, inbhop, gain, jss);
+	PreStrafeTrainer_Tick(client, speed, inbhop);
 }
 
 public void BhopStat_FirstJumpForward(int client, int speed)
