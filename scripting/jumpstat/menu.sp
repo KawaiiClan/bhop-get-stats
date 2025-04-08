@@ -16,7 +16,7 @@ void Menu_CheckEditMode(int client, int& buttons, int mouse[2]) {
 	g_iCmdNum[client]++;
 
 	SetEntProp(client, Prop_Data, "m_fFlags",  GetEntProp(client, Prop_Data, "m_fFlags") |  FL_ATCONTROLS );
-	SetEntityMoveType(client, MOVETYPE_NONE);
+	//SetEntityMoveType(client, MOVETYPE_NONE);
 
 	bool xLock = view_as<bool>(buttons & IN_SPEED);
 	bool yLock = view_as<bool>(buttons & IN_DUCK);
@@ -62,13 +62,27 @@ void Menu_CheckEditMode(int client, int& buttons, int mouse[2]) {
 	{
 		PushPosCache(client);
 
-		BgsDisplayHud(client, g_fCacheHudPositions[client][g_iEditHud[client]], g_iBstatColors[GainGood], 1.0, GetDynamicChannel(g_iEditHud[client]), true, g_sHudStrs[g_iEditHud[client]]);
-
+		if(g_iEditHud[client] <= 5)
+		{
+			BgsDisplayHud(client, g_fCacheHudPositions[client][g_iEditHud[client]], g_iBstatColors[GainGood], 1.0, GetDynamicChannel(g_iEditHud[client]), true, g_sHudStrs[g_iEditHud[client]]);
+		}
+		else
+		{
+			BgsDisplayHud(client, g_fCacheHudPositions[client][g_iEditHud[client]], g_iBstatColors[GainGood], 1.0, GetDynamicChannel(0), true, g_sHudStrs[g_iEditHud[client]]);
+		}
+		
 		for(int i = 0; i < sizeof(g_fDefaultHudYPositions); i++)
 		{
 			if(i != g_iEditHud[client])
 			{
-				BgsDisplayHud(client, g_fCacheHudPositions[client][i], g_iBstatColors[GainReallyBad], 1.0, GetDynamicChannel(i), true, g_sHudStrs[i]);
+				if(i <= 5)
+				{
+					BgsDisplayHud(client, g_fCacheHudPositions[client][i], g_iBstatColors[GainReallyBad], 1.0, GetDynamicChannel(i), true, g_sHudStrs[i]);
+				}
+				else
+				{
+					BgsDisplayHud(client, g_fCacheHudPositions[client][i], g_iBstatColors[GainReallyBad], 1.0, GetDynamicChannel(0), true, g_sHudStrs[i]);
+				}
 			}
 		}
 	}
@@ -128,7 +142,7 @@ void ShowJsMenu(int client)
 	char title[256];
 	char version[32];
 	BgsVersion(version, sizeof(version));
-	Format(title, sizeof(title), "JumpStats %s - Nimmy\n\n", version)
+	Format(title, sizeof(title), "JumpStats\n\n")
 	SetMenuTitle(menu, title);
 	AddMenuItem(menu, "stats", "Statistics");
 	AddMenuItem(menu, "hud", "Hud Positions");
@@ -159,6 +173,7 @@ void ShowStatOverviewMenu(int client)
 	}
 
 	AddMenuItem(menu, "trainer", "Trainer (HUD)");
+	AddMenuItem(menu, "pretrainer", "Prestrafe Trainer (HUD)");
 	AddMenuItem(menu, "showkeys", "Showkeys (HUD)");
 
 	DisplayMenu(menu, client, MENU_TIME_FOREVER);
@@ -306,6 +321,20 @@ void ShowTrainerSettingsMenu(int client)
 	char message[256];
 	Format(message, sizeof(message), "Trainer Speeds: %s", g_sTrainerSpeed[g_iSettings[client][TrainerSpeed]]);
 	AddMenuItem(menu, "speed", message);
+	DisplayMenu(menu, client, MENU_TIME_FOREVER);
+}
+
+void ShowPreTrainerSettingsMenu(int client)
+{
+	if(!BgsIsValidClient(client))
+	{
+		return;
+	}
+
+	Menu menu = new Menu(PreTrainer_Select);
+	menu.ExitBackButton = true;
+	SetMenuTitle(menu, "Prestrafe Trainer Settings\n \n");
+	AddMenuItem(menu, "en", (g_iSettings[client][Bools] & PRESTRAFETRAINER_ENABLED) ? "[x] Enabled":"[ ] Enabled");
 	DisplayMenu(menu, client, MENU_TIME_FOREVER);
 }
 
@@ -581,6 +610,10 @@ public int StatOverview_Select(Menu menu, MenuAction action, int client, int opt
 		else if(StrEqual(info, "trainer"))
 		{
 			ShowTrainerSettingsMenu(client);
+		}
+		else if(StrEqual(info, "pretrainer"))
+		{
+			ShowPreTrainerSettingsMenu(client);
 		}
 		else if(StrEqual(info, "offsets"))
 		{
@@ -920,6 +953,33 @@ public int Trainer_Select(Menu menu, MenuAction action, int client, int option)
 		BgsSetCookie(client, g_hSettings[Bools], g_iSettings[client][Bools]);
 		BgsSetCookie(client, g_hSettings[TrainerSpeed], g_iSettings[client][TrainerSpeed]);
 		ShowTrainerSettingsMenu(client);
+	}
+	else if(action == MenuAction_Cancel)
+	{
+		if(option == MenuCancel_ExitBack)
+		{
+			ShowStatOverviewMenu(client);
+		}
+	}
+	else if(action == MenuAction_End)
+	{
+		delete menu;
+	}
+	return 0;
+}
+
+public int PreTrainer_Select(Menu menu, MenuAction action, int client, int option)
+{
+	if(action == MenuAction_Select)
+	{
+		char info[32];
+		menu.GetItem(option, info, sizeof(info));
+		if(StrEqual(info, "en"))
+		{
+			g_iSettings[client][Bools] ^= PRESTRAFETRAINER_ENABLED;
+		}
+		BgsSetCookie(client, g_hSettings[Bools], g_iSettings[client][Bools]);
+		ShowPreTrainerSettingsMenu(client);
 	}
 	else if(action == MenuAction_Cancel)
 	{
