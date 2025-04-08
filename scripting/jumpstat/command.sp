@@ -2,8 +2,12 @@
 void Commands_Start()
 {
 	RegConsoleCmd("sm_js", Command_Js, "Opens the jumpstats main menu");
+	RegConsoleCmd("sm_jumpstats", Command_Js, "Opens the jumpstats main menu");
 	RegConsoleCmd("sm_strafetrainer", Command_CheckTrainerEnabled, "Opens the jumpstats main menu");
 	RegConsoleCmd("sm_trainer", Command_CheckTrainerEnabled, "Opens the jumpstats main menu");
+	RegConsoleCmd("sm_prestrafetrainer", Command_CheckPreTrainerEnabled, "Opens the jumpstats main menu");
+	RegConsoleCmd("sm_pretrainer", Command_CheckPreTrainerEnabled, "Opens the jumpstats main menu");
+	RegConsoleCmd("sm_pstrainer", Command_CheckPreTrainerEnabled, "Opens the jumpstats main menu");
 	RegConsoleCmd("sm_jhud", Command_CheckJhudEnabled, "Opens the jumpstats main menu");
 	RegConsoleCmd("sm_offsets", Command_CheckOffsetEnabled, "Opens the jumpstats main menu");
 	RegConsoleCmd("sm_offset", Command_CheckOffsetEnabled, "Opens the jumpstats main menu");
@@ -47,6 +51,17 @@ public Action Command_CheckTrainerEnabled(int client, any args)
 	if(g_hEnabledTrainer.IntValue)
 	{
 		ShowTrainerSettingsMenu(client);
+		return Plugin_Handled;
+	}
+
+	return Plugin_Continue;
+}
+
+public Action Command_CheckPreTrainerEnabled(int client, any args)
+{
+	if(g_hEnabledPreTrainer.IntValue)
+	{
+		ShowPreTrainerSettingsMenu(client);
 		return Plugin_Handled;
 	}
 
