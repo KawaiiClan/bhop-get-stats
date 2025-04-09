@@ -17,7 +17,7 @@ Make sure you have Dynamic Channels installed as well, check the dependencies se
   JumpStats (Open Menu):
   ```
     - /js
-    - /jhud /trainer /strafetrainer /offsets /offset /ssj /speedometer /speed /fjt 
+    - /jhud /trainer /strafetrainer /prestrafetrainer /offsets /offset /ssj /speedometer /speed /fjt 
 	- (Enabled by default in CVARS, but disablable commands)
   ```
 
