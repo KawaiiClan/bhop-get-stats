@@ -15,16 +15,16 @@ void Commands_Start()
 	RegConsoleCmd("sm_speed", Command_CheckSpeedEnabled, "Opens the jumpstats main menu");
 	RegConsoleCmd("sm_ssj", Command_CheckSsjEnabled, "Opens the jumpstats main menu");
 	RegConsoleCmd("sm_fjt", Command_CheckFjtEnabled, "Opens the jumpstats main menu");
-	RegConsoleCmd("sm_showkeys", Command_JsShowkeys, "Oopens the jumopstats showkeys menu");
+	RegConsoleCmd("sm_showkeys", Command_JsShowkeys, "Opens the jumpstats showkeys menu");
 }
 
-public Action Command_Js(int client, any args)
+public Action Command_Js(int client, int args)
 {
 	ShowJsMenu(client);
 	return Plugin_Handled;
 }
 
-public Action Command_CheckFjtEnabled(int client, any args)
+public Action Command_CheckFjtEnabled(int client, int args)
 {
 	if(g_hEnabledFjt.IntValue)
 	{
@@ -35,7 +35,7 @@ public Action Command_CheckFjtEnabled(int client, any args)
 	return Plugin_Continue;
 }
 
-public Action Command_CheckJhudEnabled(int client, any args)
+public Action Command_CheckJhudEnabled(int client, int args)
 {
 	if(g_hEnabledJhud.IntValue)
 	{
@@ -46,7 +46,7 @@ public Action Command_CheckJhudEnabled(int client, any args)
 	return Plugin_Continue;
 }
 
-public Action Command_CheckTrainerEnabled(int client, any args)
+public Action Command_CheckTrainerEnabled(int client, int args)
 {
 	if(g_hEnabledTrainer.IntValue)
 	{
@@ -57,7 +57,7 @@ public Action Command_CheckTrainerEnabled(int client, any args)
 	return Plugin_Continue;
 }
 
-public Action Command_CheckPreTrainerEnabled(int client, any args)
+public Action Command_CheckPreTrainerEnabled(int client, int args)
 {
 	if(g_hEnabledPreTrainer.IntValue)
 	{
@@ -68,7 +68,7 @@ public Action Command_CheckPreTrainerEnabled(int client, any args)
 	return Plugin_Continue;
 }
 
-public Action Command_CheckSpeedEnabled(int client, any args)
+public Action Command_CheckSpeedEnabled(int client, int args)
 {
 	if(g_hEnabledSpeedometer.IntValue)
 	{
@@ -79,7 +79,7 @@ public Action Command_CheckSpeedEnabled(int client, any args)
 	return Plugin_Continue;
 }
 
-public Action Command_CheckOffsetEnabled(int client, any args)
+public Action Command_CheckOffsetEnabled(int client, int args)
 {
 	if(g_hEnabledOffset.IntValue)
 	{
@@ -90,7 +90,7 @@ public Action Command_CheckOffsetEnabled(int client, any args)
 	return Plugin_Continue;
 }
 
-public Action Command_CheckSsjEnabled(int client, any args)
+public Action Command_CheckSsjEnabled(int client, int args)
 {
 	if(g_hEnabledSsj.IntValue)
 	{
@@ -101,7 +101,7 @@ public Action Command_CheckSsjEnabled(int client, any args)
 	return Plugin_Continue;
 }
 
-public Action Command_JsShowkeys(int client, any args)
+public Action Command_JsShowkeys(int client, int args)
 {
 	if(g_hEnabledShowkeys.IntValue)
 	{
