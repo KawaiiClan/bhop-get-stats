@@ -15,7 +15,7 @@ void Commands_Start()
 	RegConsoleCmd("sm_speed", Command_CheckSpeedEnabled, "Opens the jumpstats main menu");
 	RegConsoleCmd("sm_ssj", Command_CheckSsjEnabled, "Opens the jumpstats main menu");
 	RegConsoleCmd("sm_fjt", Command_CheckFjtEnabled, "Opens the jumpstats main menu");
-	RegConsoleCmd("sm_showkeys", Command_JsShowkeys, "Oopens the jumopstats showkeys menu");
+	RegConsoleCmd("sm_showkeys", Command_JsShowkeys, "Opens the jumpstats showkeys menu");
 }
 
 public Action Command_Js(int client, int args)
@@ -57,7 +57,7 @@ public Action Command_CheckTrainerEnabled(int client, int args)
 	return Plugin_Continue;
 }
 
-public Action Command_CheckPreTrainerEnabled(int client, any args)
+public Action Command_CheckPreTrainerEnabled(int client, int args)
 {
 	if(g_hEnabledPreTrainer.IntValue)
 	{
@@ -68,7 +68,7 @@ public Action Command_CheckPreTrainerEnabled(int client, any args)
 	return Plugin_Continue;
 }
 
-public Action Command_CheckSpeedEnabled(int client, any args)
+public Action Command_CheckSpeedEnabled(int client, int args)
 {
 	if(g_hEnabledSpeedometer.IntValue)
 	{
