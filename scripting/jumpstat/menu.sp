@@ -204,26 +204,26 @@ void ShowSSJMenu(int client, int pos = 0)
 	Menu menu = new Menu(Ssj_Select);
 	menu.ExitBackButton = true;
 	SetMenuTitle(menu, "Chat Jump Stats \n \n");
-	AddMenuItem(menu, "enSsj", (g_iSettings[client][Bools] & SSJ_ENABLED) ? "[x] Enabled":"[ ] Enabled");
-	AddMenuItem(menu, "enRepeat", (g_iSettings[client][Bools] & SSJ_REPEAT) ? "[x] Repeat":"[ ] Repeat");
+	AddMenuItem(menu, "enSsj", (g_iSettings[client][Bools] & SSJ_ENABLED) ? "[X] Enabled":"[  ] Enabled");
+	AddMenuItem(menu, "enRepeat", (g_iSettings[client][Bools] & SSJ_REPEAT) ? "[X] Repeat":"[  ] Repeat");
 
 	char message[256];
 	Format(message, sizeof(message), "Usage: %i",g_iSettings[client][Usage]);
 	AddMenuItem(menu, "enUsage", message);
-	AddMenuItem(menu, "enDecimals", (g_iSettings[client][Bools] & SSJ_DECIMALS) ? "[x] Decimals":"[ ] Decimals");
-	AddMenuItem(menu, "enGain", (g_iSettings[client][Bools] & SSJ_GAIN) ? "[x] Gain":"[ ] Gain");
-	AddMenuItem(menu, "enSync", (g_iSettings[client][Bools] & SSJ_SYNC) ? "[x] Sync":"[ ] Sync");
-	AddMenuItem(menu, "enStrafes", (g_iSettings[client][Bools] & SSJ_STRAFES) ? "[x] Strafes":"[ ] Strafes");
-	AddMenuItem(menu, "enJss", (g_iSettings[client][Bools] & SSJ_JSS) ? "[x] Jss":"[ ] Jss");
-	AddMenuItem(menu, "enEff", (g_iSettings[client][Bools] & SSJ_EFFICIENCY) ? "[x] Efficiency":"[ ] Efficiency");
-	AddMenuItem(menu, "enOffset", (g_iSettings[client][Bools] & SSJ_OFFSETS) ? "[x] Offsets":"[ ] Offsets");
-	AddMenuItem(menu, "enMaxHeight", (g_iSettings[client][Bools] & SSJ_JUMP_HEIGHT) ? "[x] Max Height":"[ ] Max Height");
-	AddMenuItem(menu, "enHeight", (g_iSettings[client][Bools] & SSJ_HEIGHTDIFF) ? "[x] Height Difference":"[ ] Height Difference");
+	AddMenuItem(menu, "enDecimals", (g_iSettings[client][Bools] & SSJ_DECIMALS) ? "[X] Decimals":"[  ] Decimals");
+	AddMenuItem(menu, "enGain", (g_iSettings[client][Bools] & SSJ_GAIN) ? "[X] Gain":"[  ] Gain");
+	AddMenuItem(menu, "enSync", (g_iSettings[client][Bools] & SSJ_SYNC) ? "[X] Sync":"[  ] Sync");
+	AddMenuItem(menu, "enStrafes", (g_iSettings[client][Bools] & SSJ_STRAFES) ? "[X] Strafes":"[  ] Strafes");
+	AddMenuItem(menu, "enJss", (g_iSettings[client][Bools] & SSJ_JSS) ? "[X] Jss":"[  ] Jss");
+	AddMenuItem(menu, "enEff", (g_iSettings[client][Bools] & SSJ_EFFICIENCY) ? "[X] Efficiency":"[  ] Efficiency");
+	AddMenuItem(menu, "enOffset", (g_iSettings[client][Bools] & SSJ_OFFSETS) ? "[X] Offsets":"[  ] Offsets");
+	AddMenuItem(menu, "enMaxHeight", (g_iSettings[client][Bools] & SSJ_JUMP_HEIGHT) ? "[X] Max Height":"[  ] Max Height");
+	AddMenuItem(menu, "enHeight", (g_iSettings[client][Bools] & SSJ_HEIGHTDIFF) ? "[X] Height Difference":"[  ] Height Difference");
 
 	if(g_bShavitCoreLoaded)
 	{
-		AddMenuItem(menu, "enTime", (g_iSettings[client][Bools] & SSJ_SHAVIT_TIME) ? "[x] Time":"[ ] Time");
-		AddMenuItem(menu, "enTimeDelta", (g_iSettings[client][Bools] & SSJ_SHAVIT_TIME_DELTA) ? "[x] Time Difference":"[ ] Time Difference");
+		AddMenuItem(menu, "enTime", (g_iSettings[client][Bools] & SSJ_SHAVIT_TIME) ? "[X] Time":"[  ] Time");
+		AddMenuItem(menu, "enTimeDelta", (g_iSettings[client][Bools] & SSJ_SHAVIT_TIME_DELTA) ? "[X] Time Difference":"[  ] Time Difference");
 	}
 
 	while(pos % GetMenuPagination(menu) != 0)
@@ -244,10 +244,10 @@ void ShowJhudSettingsMenu(int client)
 	Menu menu = new Menu(Jhud_Select);
 	menu.ExitBackButton = true;
 	SetMenuTitle(menu, "Jhud Settings\n \n");
-	AddMenuItem(menu, "en", (g_iSettings[client][Bools] & JHUD_ENABLED) ? "[x] Enabled":"[ ] Enabled")
-	AddMenuItem(menu, "strafespeed", (g_iSettings[client][Bools] & JHUD_JSS) ? "[x] Jss":"[ ] Jss");
-	AddMenuItem(menu, "sync", (g_iSettings[client][Bools] & JHUD_SYNC) ? "[x] Sync":"[ ] Sync");
-	AddMenuItem(menu, "gmodJss", (g_iSettings[client][Bools] & JHUD_GMOD_JSS) ? "[x] Gmod Jss" : "[ ] Gmod Jss");
+	AddMenuItem(menu, "en", (g_iSettings[client][Bools] & JHUD_ENABLED) ? "[X] Enabled":"[  ] Enabled")
+	AddMenuItem(menu, "strafespeed", (g_iSettings[client][Bools] & JHUD_JSS) ? "[X] Jss":"[  ] Jss");
+	AddMenuItem(menu, "sync", (g_iSettings[client][Bools] & JHUD_SYNC) ? "[X] Sync":"[  ] Sync");
+	AddMenuItem(menu, "gmodJss", (g_iSettings[client][Bools] & JHUD_GMOD_JSS) ? "[X] Gmod Jss" : "[  ] Gmod Jss");
 
 	char message[64];
 	Format(message, sizeof(message), "Speed Colors Till: %i", g_iSettings[client][JhudSpeedColorsJump]);
@@ -269,9 +269,9 @@ void ShowOffsetsMenu(int client)
 	Menu menu = new Menu(Offsets_Select);
 	menu.ExitBackButton = true;
 	SetMenuTitle(menu, "Offsets Settings\n \n");
-	AddMenuItem(menu, "en", (g_iSettings[client][Bools] & OFFSETS_ENABLED) ? "[x] HUD":"[ ] HUD");
-	AddMenuItem(menu, "spam", (g_iSettings[client][Bools] & OFFSETS_SPAM_CONSOLE) ? "[x] Console Dump":"[ ] Console Dump");
-	AddMenuItem(menu, "adv", (g_iSettings[client][Bools] & OFFSETS_ADVANCED) ? "[x] NoPress/Overlap Text":"[ ] NoPress/Overlap Text");
+	AddMenuItem(menu, "en", (g_iSettings[client][Bools] & OFFSETS_ENABLED) ? "[X] HUD":"[  ] HUD");
+	AddMenuItem(menu, "spam", (g_iSettings[client][Bools] & OFFSETS_SPAM_CONSOLE) ? "[X] Console Dump":"[  ] Console Dump");
+	AddMenuItem(menu, "adv", (g_iSettings[client][Bools] & OFFSETS_ADVANCED) ? "[X] NoPress/Overlap Text":"[  ] NoPress/Overlap Text");
 	DisplayMenu(menu, client, MENU_TIME_FOREVER);
 }
 
@@ -285,8 +285,8 @@ void ShowFjtSettingsMenu(int client)
 	Menu menu = new Menu(Fjt_Select);
 	menu.ExitBackButton = true;
 	SetMenuTitle(menu, "FJT Settings\n \n");
-	AddMenuItem(menu, "en", (g_iSettings[client][Bools] & FJT_ENABLED) ? "[x] HUD":"[ ] HUD");
-	AddMenuItem(menu, "chat", (g_iSettings[client][Bools] & FJT_CHAT) ? "[x] Chat":"[ ] Chat");
+	AddMenuItem(menu, "en", (g_iSettings[client][Bools] & FJT_ENABLED) ? "[X] HUD":"[  ] HUD");
+	AddMenuItem(menu, "chat", (g_iSettings[client][Bools] & FJT_CHAT) ? "[X] Chat":"[  ] Chat");
 	DisplayMenu(menu, client, MENU_TIME_FOREVER);
 }
 
@@ -300,8 +300,8 @@ void ShowSpeedSettingsMenu(int client)
 	Menu menu = new Menu(Speedometer_Select);
 	menu.ExitBackButton = true;
 	SetMenuTitle(menu, "Speed Settings\n \n");
-	AddMenuItem(menu, "en", (g_iSettings[client][Bools] & SPEEDOMETER_ENABLED) ? "[x] Enabled":"[ ] Enabled");
-	AddMenuItem(menu, "enVelDiff", (g_iSettings[client][Bools] & SPEEDOMETER_VELOCITY_DIFF) ? "[x] Speed Difference":"[ ]Speed Difference");
+	AddMenuItem(menu, "en", (g_iSettings[client][Bools] & SPEEDOMETER_ENABLED) ? "[X] Enabled":"[  ] Enabled");
+	AddMenuItem(menu, "enVelDiff", (g_iSettings[client][Bools] & SPEEDOMETER_VELOCITY_DIFF) ? "[X] Speed Difference":"[  ]Speed Difference");
 	DisplayMenu(menu, client, MENU_TIME_FOREVER);
 }
 
@@ -315,8 +315,8 @@ void ShowTrainerSettingsMenu(int client)
 	Menu menu = new Menu(Trainer_Select);
 	menu.ExitBackButton = true;
 	SetMenuTitle(menu, "Trainer Settings\n \n");
-	AddMenuItem(menu, "en", (g_iSettings[client][Bools] & TRAINER_ENABLED) ? "[x] Enabled":"[ ] Enabled");
-	AddMenuItem(menu, "strict", (g_iSettings[client][Bools] & TRAINER_STRICT) ? "[x] Strict Colors":"[ ] Strict Colors");
+	AddMenuItem(menu, "en", (g_iSettings[client][Bools] & TRAINER_ENABLED) ? "[X] Enabled":"[  ] Enabled");
+	AddMenuItem(menu, "strict", (g_iSettings[client][Bools] & TRAINER_STRICT) ? "[X] Strict Colors":"[  ] Strict Colors");
 
 	char message[256];
 	Format(message, sizeof(message), "Trainer Speeds: %s", g_sTrainerSpeed[g_iSettings[client][TrainerSpeed]]);
@@ -334,7 +334,7 @@ void ShowPreTrainerSettingsMenu(int client)
 	Menu menu = new Menu(PreTrainer_Select);
 	menu.ExitBackButton = true;
 	SetMenuTitle(menu, "Prestrafe Trainer Settings\n \n");
-	AddMenuItem(menu, "en", (g_iSettings[client][Bools] & PRESTRAFETRAINER_ENABLED) ? "[x] Enabled":"[ ] Enabled");
+	AddMenuItem(menu, "en", (g_iSettings[client][Bools] & PRESTRAFETRAINER_ENABLED) ? "[X] Enabled":"[  ] Enabled");
 	DisplayMenu(menu, client, MENU_TIME_FOREVER);
 }
 
@@ -347,12 +347,12 @@ void ShowShowkeysSettingsMenu(int client)
 	Menu menu = new Menu(Showkeys_Select);
 	menu.ExitBackButton = true;
 	SetMenuTitle(menu, "Showkeys Settings\n \n");
-	AddMenuItem(menu, "en", (g_iSettings[client][Bools] & SHOWKEYS_ENABLED) ? "[x] Enabled":"[ ] Enabled");
-	AddMenuItem(menu, "simple", (g_iSettings[client][Bools] & SHOWKEYS_SIMPLE) ? "[x] Simple Mode":"[ ] Simple Mode");
+	AddMenuItem(menu, "en", (g_iSettings[client][Bools] & SHOWKEYS_ENABLED) ? "[X] Enabled":"[  ] Enabled");
+	AddMenuItem(menu, "simple", (g_iSettings[client][Bools] & SHOWKEYS_SIMPLE) ? "[X] Simple Mode":"[  ] Simple Mode");
 
 	if(IsSource2013(BgsGetEngineVersion()))
 	{
-		AddMenuItem(menu, "center", (g_iSettings[client][Bools] & SHOWKEYS_UNRELIABLE) ? "[x] Center Text":"[ ] Center Text");
+		AddMenuItem(menu, "center", (g_iSettings[client][Bools] & SHOWKEYS_UNRELIABLE) ? "[X] Center Text":"[  ] Center Text");
 	}
 
 	DisplayMenu(menu, client, MENU_TIME_FOREVER);
