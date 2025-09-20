@@ -141,7 +141,7 @@ public Action Shavit_OnTeleport(int client, int index, int target)
 	g_iCmdNum[client] = 0;
 
 	cp_cache_t checkPoint;
-	Shavit_GetCheckpoint(client, index, checkPoint);
+	Shavit_GetCheckpoint(target, index, checkPoint);
 	g_iJump[client] = checkPoint.aSnapshot.iJumps;
 	return Plugin_Continue;
 }
