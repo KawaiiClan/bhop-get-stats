@@ -255,6 +255,6 @@ stock float NormalizeAngle(float ang)
 }
 
 stock float operator%(float oper1, float oper2)
-{
-	return FloatMod(oper1, oper2);
+{ 
+	return __FLOAT_MOD__(oper1, oper2);
 }
